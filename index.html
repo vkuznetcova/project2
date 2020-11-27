@@ -11,96 +11,56 @@
 
 <body>
    <script>
-      // // 1 задание
-      var a = 1, b = 1, c, d;
-      c = ++a; //alert(c); // сначала действие ++ [a=2], потом присваивание
-      d = b++; //alert(d); // сначала присваивание, потом действие ++ [b=2]
-      c = (2 + ++a); //alert(c); // изначально а=2, потом действие ++ [а=3], затем сложение   
-      d = (2 + b++); //alert(d); // изначально b=2, затем сложение, после присваивания действие ++ [b=3] 
-      //alert(a); // описано выше 
-     // alert(b); //описано выше 
 
-      // // 2 задание
-      var a = 2;
-      var x = 1 + (a *= 2); // 1 + (2*2) = 5
-
-      // 3 задание
-      var a = +prompt('Введите первое число:'),
-          b = +prompt('Введите второе число:');
-      function test(a, b) {
-         if (a >= 0 && b >= 0) { console.log(a - b); }
-         if (a < 0 && b < 0) { console.log(a * b); }
-         if ((a >= 0 && b < 0) || (b >= 0 && a < 0)) { console.log(a + b); }
-      }
-      test(a, b);
-
-      // 4 задание
-      var a = +(Math.random() * 15).toFixed();
-      switch (a) {
-         case 1:
-            console.log(a++);
-         case 2:
-            console.log(a++);
-         case 3:
-            console.log(a++);
-         case 4:
-            console.log(a++);
-         case 5:
-            console.log(a++);
-         case 6:
-            console.log(a++);
-         case 7:
-            console.log(a++);
-         case 8:
-            console.log(a++);
-         case 9:
-            console.log(a++);
-         case 10:
-            console.log(a++);
-         case 11:
-            console.log(a++);
-         case 12:
-            console.log(a++);
-         case 13:
-            console.log(a++);
-         case 14:
-            console.log(a++);
-         default:
-            console.log(15);
+      // задание 1
+      var num = 0;
+      while (num < 101) {
+         if (!(Number.isInteger(Math.sqrt(num))) && ((num % 2) || (num == 2)) && ((num % 3) || (num == 3)) && ((num % 5) || (num == 5)))
+            console.log(num);
+         num++;
       }
 
-      // 5 задание
-      function summa(a = 0, b = 0) {
-         return a + b;
-      }
-      function raznost(a = 0, b = 0) {
-         return a - b;
-      }
-      function umnojenie(a = 0, b = 0) {
-         return a * b;
-      }
-      function delenie(a = 0, b = 0) {
-         return a / b;
-      }
 
-      // 6 задание (кажется в задании опечатка, функции из пункта 5)
-      function mathOperation(arg1, arg2, operation) {
-         switch (operation) {
-            case 'summa':
-               summa(arg1, arg2);
-               break;
-            case 'raznost':
-               raznost(arg1, arg2);
-               break;
-            case 'umnojenie':
-               umnojenie(arg1, arg2);
-               break;
-            case 'delenie':
-               delenie(arg1, arg2);
-               break;
-            default:
-               console.log('Неверная операция');
+      // задание 2-3
+      var basket = [
+         {
+            title: 'Товар 1',
+            price: 100,
+            count: 1
+         },
+         {
+            title: 'Товар 2',
+            price: 200,
+            count: 1
+         },
+         {
+            title: 'Товар 3',
+            price: 300,
+            count: 2
          }
+      ];
+
+     
+      function countBasketPrice(mas) {
+         var sum=0;
+         for(var i in mas) {
+         sum+=mas[i].price*mas[i].count;
+         }
+         return sum;
+      }
+      console.log(countBasketPrice(basket));
+
+
+      // задание 4.1
+      for (var i = 0; i < 10; console.log(i++));
+
+
+      // задание 4.2
+      for (var k = 0; k < 21; k++) {
+         for (var m = 0; m < k; m++) {
+            console.log('x');
+         }
+         console.log('\n');
       }
 
    </script>
