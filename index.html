@@ -2,69 +2,231 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Title</title>
-   <link rel="stylesheet" href="#">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="#">
 </head>
 
 <body>
-   <script>
+    <script>
 
-      // задание 1
-      var num = 0;
-      while (num < 101) {
-         if (!(Number.isInteger(Math.sqrt(num))) && ((num % 2) || (num == 2)) && ((num % 3) || (num == 3)) && ((num % 5) || (num == 5)))
-            console.log(num);
-         num++;
-      }
+    // задание 1
+    var obj = {};
+    function razmer(sotn = 0, des = 0, ed = 0) {
+        if (des) {
+            if (ed) {
+                this.sotn = sotn;
+                this.des = des;
+                this.ed = ed;
+            } else {
+                this.des = sotn;
+                this.ed = des;
+                this.sotn = ed;
+            }
+        } else {
+            this.ed = sotn;
+            this.des = des;
+            this.sotn = ed;
+        }
+    }
+    var answer = prompt('Введите число [0 - 999]:');
+    if (+answer < -1 || +answer > 1000 || isNaN(+answer)) {
+        alert('Неверное значение');
+        console.log(obj);
+    } else {
+        answer = answer.split('');
+        obj = new razmer(answer[0], answer[1], answer[2]);
+        alert('Число: ' + answer.join('') + '\nединицы: ' + obj.ed + ', десятки: ' + obj.des + ', сотни: ' + obj.sotn);
+    }
+
+    // задание 2
+    var works = {
+        a00: 'Вы живёте в тихой и уютной деревеньке на окрайне страны.\n' +
+            'Здесь есть практчески всё: речка, лес, горы, озеро, луга и поля, есть даже школа в соседнем селе.\n' +
+            'Сейчас начало лета, воскресенье, раннее утро, Вы просыпаетесь и собираетесь ...\n',
+        a0: 2,
+        a1: '1 - Поспать до обеда\n',
+        a2: '2 - Пойти прогуляться\n',
+        b00: 'Вы решили поспать до обеда.\n' +
+            'После того как Вы проснулись первое, что вы ощутили, это приятный запах, который шёл с кухни.\n' +
+            'После Вы замечаете, какая за окном прекрасная погода, и Вы думаете ...\n',
+        b0: 2,
+        b1: '1 - Пойти прогуляться\n',
+        b2: '2 - Пойти пообедать\n',
+        c00: 'Вы решили пойти прогуляться.\n' +
+            'Вы выходите из своего дома и видите прекрасный рассвет, блики солнца так и играют на озёрной глади.\n' +
+            'Вы решаете дойти до озера, полюбоваться его красотойю\n' +
+            'С одной стороны тропинки Вы видите пшеничное поле, за которым веднеется лес.\n' +
+            'С другой стороны течёт речка, а в далеке виднеются горы.\n' +
+            'Вы наслаждаетесь пейзажами и не замечаете как летит время.\n' +
+            'Домой Вы приходите только к обеду, но до обеда ещё есть время и Вы решаете ...\n',
+        c0: 2,
+        c1: '1 - Подождать обед в столовой\n',
+        c2: '2 - Поколоть дров перед обедом\n',
+        d00: 'Здесь пишем текст повествования.\n' +
+            'Потом пишем несколько действий, например, два\n',
+        d0: 2,
+        d1: '1 - 1-й ответ\n',
+        d2: '2 - 2-й ответ\n',
+    };
+
+    var event, ok, answers = [],
+        user = {};
+
+    do {
+        ok = false;
+        event = +prompt(works.a00 + works.a1 + works.a2 + '-1 - Выход из игры');
+        if (event == -1) {
+            break;
+        } else {
+            ok = isAnswer(works.a0, event);
+            user.q1 = works.a00;
+            if (event == 1) {
+                user.a1 = works.a1;
+            } else {
+                user.a1 = works.a2;
+            }
+        }
+    } while (!ok);
+
+    switch (event) {
+        case 1:
+            do {
+                ok = false;
+                event = +prompt(works.b00 + works.b1 + works.b2 + '-1 - Выход из игры');
+                if (event == -1) {
+                    break;
+                } else {
+                    ok = isAnswer(works.b0, event);
+                    user.q2 = works.b00;
+                    if (event == 1) {
+                        user.a2 = works.b1;
+                    } else {
+                        user.a2 = works.b2;
+                    }
+                }
+            } while (!ok);
+            switch (event) {
+                case 1:
+                case 2:
+                    do {
+                        ok = false;
+                        event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+                        if (event == -1) {
+                            break;
+                        } else {
+                            ok = isAnswer(works.d0, event);
+                            user.q3 = works.d00;
+                            if (event == 1) {
+                                user.a3 = works.d1;
+                            } else {
+                                user.a3 = works.d2;
+                            }
+                        }
+                    } while (!ok);
+
+                    break;
+                case -1:
+                    break;
+                default:
+                    alert('Ошибка');
+            }
+            break;
+        case 2:
+            do {
+                ok = false;
+                event = +prompt(works.c00 + works.c1 + works.c2 + '-1 - Выход из игры');
+                if (event == -1) {
+                    break;
+                } else {
+                    ok = isAnswer(works.c0, event);
+                    user.q2 = works.c00;
+                    if (event == 1) {
+                        user.a2 = works.c1;
+                    } else {
+                        user.a2 = works.c2;
+                    }
+                }
+            } while (!ok);
+            switch (event) {
+                case 1:
+                case 2:
+                    do {
+                        ok = false;
+                        event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+                        if (event == -1) {
+                            break;
+                        } else {
+                            ok = isAnswer(works.d0, event);
+                            user.q3 = works.d00;
+                            if (event == 1) {
+                                user.a3 = works.d1;
+                            } else {
+                                user.a3 = works.d2;
+                            }
+                        }
+                    } while (!ok);
+
+                    break;
+                case -1:
+                    break;
+                default:
+                    alert('Ошибка');
+            }
+            break;
+        case -1:
+            break;
+        default:
+            alert('Ошибка');
+    }
 
 
-      // задание 2-3
-      var basket = [
-         {
-            title: 'Товар 1',
-            price: 100,
-            count: 1
-         },
-         {
-            title: 'Товар 2',
-            price: 200,
-            count: 1
-         },
-         {
-            title: 'Товар 3',
-            price: 300,
-            count: 2
-         }
-      ];
+    alert('Спасибо за игру');
+    if (event != -1) {
+        do {
+            ok = false;
+            event = +prompt('На какой вопрос вы хотите посмотреть ответ: \n1-Первый вопрос\n2-Второй вопрос\n3-Третий вопрос' + '-1 - Выход из игры');
+            if (event == -1) {
+                break;
+            } else {
+                ok = answerAfter(event);
+            }
+        } while (!ok);
+    }
 
-     
-      function countBasketPrice(mas) {
-         var sum=0;
-         for(var i in mas) {
-         sum+=mas[i].price*mas[i].count;
-         }
-         return sum;
-      }
-      console.log(countBasketPrice(basket));
+    function answerAfter(event) {
+        if (isNaN(event) || !isFinite(event)) {
+            alert('Вы ввели недопустимый символ');
+            return false;
+        } else if (event < 0 || event > 4) {
+            alert('Ваше число выходит из допустимого диапозона');
+            return false;
+        } else if (event == 1) {
+            alert(user.q1 + user.a1);
+            return true;
+        } else if (event == 2) {
+            alert(user.q2 + user.a2);
+            return true;
+        } else if (event == 3) {
+            alert(user.q3 + user.a3);
+            return true;
+        }
+    }
 
+    function isAnswer(q, event) {
+        if (isNaN(event) || !isFinite(event)) {
+            alert('Вы ввели недопустимый символ');
+            return false;
+        } else if (event < 1 || event > q) {
+            alert('Ваше число выходит из допустимого диапозона');
+            return false;
+        }
+        return true;
+    }
 
-      // задание 4.1
-      for (var i = 0; i < 10; console.log(i++));
-
-
-      // задание 4.2
-      for (var k = 0; k < 21; k++) {
-         for (var m = 0; m < k; m++) {
-            console.log('x');
-         }
-         console.log('\n');
-      }
-
-   </script>
-
+    </script>
 </body>
 
 </html>
