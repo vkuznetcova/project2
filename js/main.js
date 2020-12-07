@@ -1,60 +1,95 @@
-let table = document.createElement('table');
-table.classList.add('table-board');
-document.querySelector('.board').append(table);
+// 1 задание
+var small = document.querySelectorAll('.small'),
+    wrp = document.querySelector('.wrp'),
+    img = document.createElement('img');
 
-let tr, td, m, letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], num=['8','7','6','5','4','3','2','1'], chess = ['&#9812', '&#9813', '&#9814', '&#9815', '&#9816', '&#9817', '&#9818', '&#9819', '&#9820', '&#9821', '&#9822', '&#9823']
-
-for (let i = 0; i < 10; i++) {
-    tr = document.createElement('tr');
-    table.append(tr);
-    for (let j = 0; j < 10; j++) {
-        td = document.createElement('td');
-        tr.append(td);
-        if (i == 2) {
-            td.innerHTML = chess[11];
+for (let i = 0; i < small.length; i++) {
+    small[i].addEventListener('click', function () {
+        wrp.append(img);
+        img.setAttribute('src', 'img/big' + (i + 1) + '.jpg')
+        img.onerror = function () {
+            alert('Такого файла не существует');
+            img.remove();
         }
-        if (i == 1 && (j == 1 || j == 8)) {
-            td.innerHTML = chess[8];
-        }
-        if (i == 1 && (j == 2 || j == 7)) {
-            td.innerHTML = chess[10];
-        }
-        if (i == 1 && (j == 3 || j == 6)) {
-            td.innerHTML = chess[9];
-        }
-        if (i == 1 && j == 4) {
-            td.innerHTML = chess[7];
-        }
-        if (i == 1 && j == 5) {
-            td.innerHTML = chess[6];
-        }
-        if (i == 7) {
-            td.innerHTML = chess[5];
-        }
-        if (i == 8 && (j == 1 || j == 8)) {
-            td.innerHTML = chess[2];
-        }
-        if (i == 8 && (j == 2 || j == 7)) {
-            td.innerHTML = chess[4];
-        }
-        if (i == 8 && (j == 3 || j == 6)) {
-            td.innerHTML = chess[3];
-        }
-        if (i == 8 && j == 4) {
-            td.innerHTML = chess[1];
-        }
-        if (i == 8 && j == 5) {
-            td.innerHTML = chess[0];
-        }
-        if (((i + j) % 2) && j != 0 && j != 9 && i != 0 && i != 9) {
-            td.classList.add('gray')
-        }
-        if ((i == 0 || i == 9) && j != 0 && j != 9) {
-            td.innerText = letters[j - 1];
-        }
-        if ((i != 0 && i != 9) && (j == 0 || j == 9)) {
-            td.innerText = num[i-1];
-        }
-    }
+    })
 }
 
+// 2 задание
+var goods = document.querySelector('.goods'),
+    basket = document.querySelector('.basket'),
+    items = [
+        {
+            name: 'Товар 1',
+            photo: '../img/small1.jpg',
+            price: 100
+        },
+        {
+            name: 'Товар 2',
+            photo: '../img/small2.jpg',
+            price: 150
+        },
+        {
+            name: 'Товар 3',
+            photo: '../img/small3.jpg',
+            price: 200
+        },
+    ];
+for (let i = 0; i < items.length; i++) {
+    let item = document.createElement('div'),
+        photo = document.createElement('img'),
+        title = document.createElement('span'),
+        price = document.createElement('span'),
+        btn = document.createElement('button');
+    item.setAttribute('class', 'item');
+    photo.setAttribute('src', items[i].photo);
+    title.innerText = items[i].name;
+    price.innerText = 'Цена: ' + items[i].price;
+    btn.innerText = 'Купить';
+    goods.append(item);
+    item.append(photo);
+    item.append(title);
+    item.append(price);
+    item.append(btn);
+}
+var item = document.querySelectorAll('.item'),
+    btn = document.querySelectorAll('button'),
+    sum = 0,
+    summa = document.createElement('span');
+basket.append(summa);
+for (let i = 0; i < items.length; i++) {
+    btn[i].addEventListener('click', function () {
+        let basketItem = document.createElement('div'),
+            title = document.createElement('span'),
+            price = document.createElement('span');
+        title.innerText = items[i].name;
+        price.innerText = ' -Цена: ' + items[i].price;
+        basket.append(basketItem);
+        basketItem.append(title);
+        basketItem.append(price);
+        sum += items[i].price;
+        summa.innerHTML = 'Общая сумма =' + sum;
+    })
+
+}
+
+// 3 задание
+var carousel = document.querySelectorAll('.vis'),
+    back = document.querySelector('.back'),
+    next = document.querySelector('.next'),
+    m = 1;
+back.addEventListener('click', function () {
+    carousel[m].classList.toggle('hidden');
+    m -= 1;
+    if (m < 0) {
+        m = carousel.length - 1;
+    }
+    carousel[m].classList.toggle('hidden');
+});
+next.addEventListener('click', function () {
+    carousel[m].classList.toggle('hidden');
+    m += 1;
+    if (m >= carousel.length) {
+        m = 0;
+    }
+    carousel[m].classList.toggle('hidden');
+});
