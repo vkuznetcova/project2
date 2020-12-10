@@ -3,31 +3,41 @@ html {
   margin: 0;
   padding: 0;
 }
-h1 {
+#snake-field{
+  display: inline-block;
+}
+#snake-renew,#snake-start{
+  width: 150px;
+  padding: 15px;
+  color: white;
+  background-color: green;
   text-align: center;
-}
-.wrp, .goods, .basket {
-  display: flex;
-  justify-content: space-around;
-  width: 60%;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 35px auto 0;
-}
-.small:hover {
   cursor: pointer;
+  float: left;
+  margin-right: 10px;
 }
-img:nth-of-type(4){
-  padding-top: 25px;
+.game-table{
+  border-collapse: collapse;
+  background-color: #3e3e3e;
 }
-.item, .basket {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+td.game-table-cell{
+  width: 15px;
+  height: 15px;
+  border: 1px dotted #eee;
 }
-.vis {
-  display: block;
+.snake-unit{
+  background-color: white;
 }
-.hidden {
-  display: none;
+.food-unit{
+  background-color: red;
+}
+.bomb-unit{
+  color: #fff;
+}
+.buttons{
+  display: inline-block;
+}
+.wrap{
+  margin: 30px auto 0;
+  text-align: center;
 }
