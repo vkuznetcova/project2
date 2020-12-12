@@ -5,21 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Title</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <title>Title</title </head>
 
 <body>
-    <div class="wrap">
-        <div id="snake-field"></div>
-        <div class="buttons">
-            <div id="snake-start">Старт</div>
-            <div id="snake-renew">Новая игра</div>
-        </div>
-        <div class="score">
-            Ваш счет: 
-            <span class="score-field"></span>
-        </div>
-    <script src="js/main.js"></script>
+    <script>
+        if (!("a" in window)) { // true
+            var a = 1;
+        }
+        //alert(a); undefined, почему не 1 ??
+
+
+        var b = function a(x) {
+            x && a(--x);
+        };
+        // alert(a);  undefined - нет вызова функции
+
+
+        function a(x) {
+            return x * 2;
+        }
+        var a;
+        //alert(a); undefined - var a: ничего не присвоено
+
+
+        function b(x, y, a) {
+            arguments[2] = 10; // ссылка на 3 аргумент (а=3) в функции
+            //alert(a); 10
+        }
+        b(1, 2, 3);
+
+
+        function a() {
+            // alert(this); obj window
+        }
+        a.call(null); // вызов из ничего(null-object), но в теле функции вызывается объект whindow
+    </script>
 </body>
+
 </html>
